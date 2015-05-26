@@ -1,0 +1,7 @@
+node_modules
+*.log
+*.sublime-project
+.npmignore
+.DS_Store
+coverage
+*.html

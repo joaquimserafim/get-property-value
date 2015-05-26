@@ -1,0 +1,53 @@
+{
+  "name": "get-property-value",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "files": [
+    "LICENSE",
+    "README.md",
+    "index.js"
+  ],
+  "scripts": {
+    "test": "lab -v -c test.js",
+    "check-coverage": "lab -t 100 -r html -o coverage.html test.js",
+    "open-coverage": "open coverage.html",
+    "jshint": "jshint -c .jshintrc *.js",
+    "code-style": "jscs -p google *.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/joaquimserafim/get-property-value.git"
+  },
+  "keywords": [
+    "utilities",
+    "js object",
+    "property",
+    "pick",
+    "get",
+    "path",
+    "object"
+  ],
+  "author": "@joaquimserafim",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/joaquimserafim/get-property-value/issues"
+  },
+  "homepage": "https://github.com/joaquimserafim/get-property-value",
+  "devDependencies": {
+    "code": "^1.4.0",
+    "jscs": "^1.13.1",
+    "jshint": "^2.7.0",
+    "lab": "^5.9.0",
+    "pre-commit": "^1.0.7"
+  },
+  "pre-commit": [
+    "jshint",
+    "code-style",
+    "test",
+    "check-coverage"
+  ],
+  "dependencies": {
+    "is-js-object": "^1.0.0"
+  }
+}
