@@ -20,9 +20,9 @@ describe('get property value', function() {
 
   it('a valid js object but a bad path', function(done) {
     var obj = {a: 1}
-    var props = getPropertyValue(obj)
-    expect(props).to.be.an.object
-    expect(props.a).to.equal(obj.a)
+    var val = getPropertyValue(obj)
+    expect(val).to.be.an.object
+    expect(val.a).to.equal(obj.a)
     done()
   })
 
@@ -30,6 +30,21 @@ describe('get property value', function() {
     var obj = {a: {b: 1}, c: {d: {f: 'hello'}}}
     var fValue = getPropertyValue(obj, 'c.d.f')
     expect(fValue).to.equal('hello')
+    done()
+  })
+
+  it('return an object', function(done) {
+    var obj = {a: {b: 1}}
+    var val = getPropertyValue(obj, 'a')
+    expect(val).to.be.an.object
+    expect(val.b).to.equal(obj.a.b)
+    done()
+  })
+
+  it('property don\'t exist shoudl return undefined', function(done) {
+    var obj = {a: {b: 1}, c: {d: {f: 'hello'}}}
+    var fValue = getPropertyValue(obj, 'c.d.g')
+    expect(fValue).to.be.an.undefined
     done()
   })
 })

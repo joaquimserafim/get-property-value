@@ -15,6 +15,24 @@ get the property value from a nested object by using a dot path `a.b.c`
 
 ```js
 
+var getPropValue = require('get-property-value')
+
+var obj = {a: {b: 1}, c: {d: {f: 'hello'}}}
+
+var fValue = getPropertyValue(obj, 'c.d.f')
+console.log(fValue)// hello
+var aValue = getPropertyValue(obj, 'a')
+console.log(aValue)// {b: 1}
+
+var propNotExist = getPropertyValue(obj, 'c.d.g') 
+console.log(propNoExist)// undefined
+
+var badObject = getPropertyValue('hello', 'c.d.g') 
+console.log(badObject)// hello
+
+var badPath = getPropertyValue({a: 1}) 
+console.log(badPath)// {a: 1}
+
 ```
 
 
