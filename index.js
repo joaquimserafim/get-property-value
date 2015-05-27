@@ -9,11 +9,14 @@ function getPropertyValue (obj, path) {
     return obj
   }
 
-  // don't change the origin object
+  // the origin object remains
   var clone = obj
 
-  path.split('.').forEach(function(p) {
+  path.split('.').some(function(p) {
     clone = clone[p]
+    if (!clone) {
+      return true
+    }
   })
 
   return clone
