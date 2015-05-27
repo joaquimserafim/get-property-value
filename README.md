@@ -10,7 +10,6 @@ get the property value from a nested object by using a dot path `a.b.c`
 `var getPropValue = require('get-property-value')`
 
 
-
 ## Usage
 
 ```js
