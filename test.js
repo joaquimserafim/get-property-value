@@ -53,4 +53,13 @@ describe('get property value', function() {
     expect(fValue).to.be.an.undefined()
     done()
   })
+
+  it('should get the property nested from an Error object should work',
+  function(done) {
+    var error = new Error('hello world')
+    error.someThing = {status: 'hey'}
+    var status = get(error, 'someThing.status')
+    expect(status).to.equal('hey')
+    done()
+  })
 })

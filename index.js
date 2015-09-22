@@ -5,7 +5,7 @@ var isObject = require('is-js-object')
 module.exports = getPropertyValue
 
 function getPropertyValue (obj, path) {
-  if (!isObject(obj) || typeof path !== 'string') {
+  if (!checkObject(obj) || typeof path !== 'string') {
     return obj
   }
 
@@ -20,4 +20,9 @@ function getPropertyValue (obj, path) {
   })
 
   return clone
+}
+
+function checkObject(obj) {
+  return isObject(obj) ||
+    Object.prototype.toString.call(obj) === '[object Error]'
 }
