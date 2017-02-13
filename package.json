@@ -1,6 +1,6 @@
 {
   "name": "get-property-value",
-  "version": "1.2.0",
+  "version": "2.0.0",
   "description": "get the property value from a nested object by using a dot path `a.b.c`",
   "main": "index.js",
   "files": [
@@ -9,11 +9,9 @@
     "index.js"
   ],
   "scripts": {
-    "test": "lab -v -c test.js",
-    "check-coverage": "lab -t 100 -r html -o coverage.html test.js",
-    "open-coverage": "open coverage.html",
-    "jshint": "jshint -c .jshintrc *.js",
-    "code-style": "jscs -p google *.js"
+    "coverage": "open coverage/lcov-report/index.html",
+    "coverage:check": "istanbul check-coverage --statements 100 --functions 100 --lines 100 --branches 100",
+    "test": "standard --fix && istanbul cover -x test.js tape test.js"
   },
   "repository": {
     "type": "git",
@@ -35,19 +33,20 @@
   },
   "homepage": "https://github.com/joaquimserafim/get-property-value",
   "devDependencies": {
-    "code": "^1.5.0",
-    "jscs": "^2.5.1",
-    "jshint": "^2.8.0",
-    "lab": "^5.18.1",
-    "pre-commit": "^1.1.2"
+    "istanbul": "0.4.5",
+    "pre-commit": "^1.2.2",
+    "standard": "^8.6.0",
+    "tape": "^4.6.3"
   },
   "pre-commit": [
-    "jshint",
-    "code-style",
     "test",
-    "check-coverage"
+    "coverage:check"
   ],
   "dependencies": {
-    "is-js-object": "^1.1.2"
+    "array.some": "^1.0.0",
+    "is.object": "^1.0.0"
+  },
+  "engines": {
+    "node": ">=6.1"
   }
 }

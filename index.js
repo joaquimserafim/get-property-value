@@ -1,28 +1,31 @@
+/*
+eslint
+no-multi-spaces: ["error", {exceptions: {"VariableDeclarator": true}}]
+padded-blocks: ["error", {"classes": "always"}]
+max-len: ["error", 80]
+*/
 'use strict'
 
-var isObject = require('is-js-object')
+const isObject  = require('is.object')
+const some      = require('array.some')
 
 module.exports = getPropertyValue
 
 function getPropertyValue (obj, path) {
-  if (!checkObject(obj) || typeof path !== 'string') {
+  if (!isObject(obj) || typeof path !== 'string') {
     return obj
   }
 
-  // the origin object remains
-  var clone = obj
+  let clone = obj
 
-  path.split('.').some(function(p) {
+  some(path.split('.'), procPath)
+
+  return clone
+
+  function procPath (p) {
     clone = clone[p]
     if (!clone) {
       return true
     }
-  })
-
-  return clone
-}
-
-function checkObject(obj) {
-  return isObject(obj) ||
-    Object.prototype.toString.call(obj) === '[object Error]'
+  }
 }

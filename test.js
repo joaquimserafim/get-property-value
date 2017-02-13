@@ -1,65 +1,116 @@
+/*
+eslint
+no-multi-spaces: ["error", {exceptions: {"VariableDeclarator": true}}]
+padded-blocks: ["error", {"classes": "always"}]
+max-len: ["error", 80]
+*/
 'use strict'
 
-var Lab   = require('lab')
-var Code  = require('code')
+const test = require('tape')
 
-var lab = module.exports.lab = Lab.script()
+const getPropValue = require('.')
 
-var describe  = lab.describe
-var it        = lab.it
-var expect    = Code.expect
+test('should return the given argument for invalid plain js objects',
+  (assert) => {
 
-var get = require('./')
+    assert.deepEqual(getPropValue(), undefined, 'with undefined')
+    assert.deepEqual(getPropValue(null), null, 'with null')
+    assert.deepEqual(getPropValue([]), [], 'with an array')
+    assert.deepEqual(getPropValue('object'), 'object', 'with a string')
+    assert.deepEqual(getPropValue(1), 1, 'with a number')
 
-describe('get property value', function() {
-  it('invalid js object', function(done) {
-    expect(get('object')).to.equal('object')
-    done()
-  })
+    assert.end()
+  }
+)
 
-  it('a valid js object but a bad path', function(done) {
-    var obj = {a: 1}
-    var val = get(obj)
-    expect(val).to.be.an.object()
-    expect(val.a).to.equal(obj.a)
-    done()
-  })
+test('should return the given js object for an invalid path',
+  (assert) => {
 
-  it('a valid js object with a valid path', function(done) {
-    var obj = {a: {b: 1}, c: {d: {f: 'hello'}}}
-    var fValue = get(obj, 'c.d.f')
-    expect(fValue).to.equal('hello')
-    done()
-  })
-
-  it('return an object', function(done) {
     var obj = {a: {b: 1}}
-    var val = get(obj, 'a')
-    expect(val).to.be.an.object()
-    expect(val.b).to.equal(obj.a.b)
-    done()
-  })
 
-  it('property don\'t exist should return undefined', function(done) {
-    var obj = {a: {b: 1}, c: {d: {f: 'hello'}}}
-    var fValue = get(obj, 'c.d.g')
-    expect(fValue).to.be.an.undefined()
-    done()
-  })
+    assert.deepEqual(getPropValue(obj), obj, 'return the given object')
 
-  it('nested property don\'t exist should return undefined', function(done) {
-    var obj = {a: {b: 1}, c: {d: {f: 'hello'}}}
-    var fValue = get(obj, 'c.t.f')
-    expect(fValue).to.be.an.undefined()
-    done()
-  })
+    assert.end()
+  }
+)
 
-  it('should get the property nested from an Error object should work',
-  function(done) {
+test('should return the property value for a given js object and a valid path',
+  (assert) => {
+
+    var obj = {a: {b: 1}}
+
+    assert
+      .deepEqual(
+        getPropValue(obj, 'a'),
+        {b: 1},
+        'returns the property value {a: 1}'
+      )
+
+    assert
+      .deepEqual(getPropValue(obj, 'a.b'), 1, 'returns the property value 1')
+
+    assert.end()
+  }
+)
+
+test('should work with nested objects', (assert) => {
+
+  var obj = {a: {b: {c: {d: 1}}}}
+
+  assert
+    .deepEqual(
+      getPropValue(obj, 'a.b.c.d'),
+      1,
+      'returns the property value 1'
+    )
+
+  assert.end()
+})
+
+test('should return undefined for a path that doesn\'t exists',
+  (assert) => {
+
+    var obj = {a: {b: 1}}
+
+    assert
+      .deepEqual(
+        getPropValue(obj, 'a.c'),
+        undefined,
+        'no property should return undefined'
+      )
+
+    assert
+      .deepEqual(
+        getPropValue(obj, 'a.b.c.d'),
+        undefined,
+        'no property should return undefined'
+      )
+
+    assert.end()
+  }
+)
+
+test('should work with an Error object',
+  (assert) => {
+
     var error = new Error('hello world')
     error.someThing = {status: 'hey'}
-    var status = get(error, 'someThing.status')
-    expect(status).to.equal('hey')
-    done()
-  })
-})
+
+    assert
+      .deepEqual(
+        getPropValue(error, 'message'),
+        'hello world',
+        'returns the error message'
+      )
+
+    assert
+      .deepEqual(
+        getPropValue(error, 'someThing.status'),
+        'hey',
+        'returns the property value hey'
+      )
+
+    assert.end()
+  }
+)
+
