@@ -1,1 +1,4 @@
-export function getPropertyValue<T = any, R = any>(obj: T, path: string): R;
+export default function getPropertyValue<T = any, R = any>(
+    obj: T,
+    path: string
+): R;
