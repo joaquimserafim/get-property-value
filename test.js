@@ -26,7 +26,7 @@ test('should return the given argument for invalid plain js objects',
 test('should return the given js object for an invalid path',
   (assert) => {
 
-    var obj = {a: {b: 1}}
+    const obj = { a: { b: 1 } }
 
     assert.deepEqual(getPropValue(obj), obj, 'return the given object')
 
@@ -37,12 +37,12 @@ test('should return the given js object for an invalid path',
 test('should return the property value for a given js object and a valid path',
   (assert) => {
 
-    var obj = {a: {b: 1}}
+    const obj = { a: { b: 1 } }
 
     assert
       .deepEqual(
         getPropValue(obj, 'a'),
-        {b: 1},
+        { b: 1 },
         'returns the property value {a: 1}'
       )
 
@@ -55,7 +55,7 @@ test('should return the property value for a given js object and a valid path',
 
 test('should work with nested objects', (assert) => {
 
-  var obj = {a: {b: {c: {d: 1}}}}
+  const obj = { a: { b: { c: { d: 1 } } } }
 
   assert
     .deepEqual(
@@ -70,7 +70,7 @@ test('should work with nested objects', (assert) => {
 test('should return undefined for a path that doesn\'t exists',
   (assert) => {
 
-    var obj = {a: {b: 1}}
+    const obj = { a: { b: 1 } }
 
     assert
       .deepEqual(
@@ -93,8 +93,8 @@ test('should return undefined for a path that doesn\'t exists',
 test('should work with an Error object',
   (assert) => {
 
-    var error = new Error('hello world')
-    error.someThing = {status: 'hey'}
+    const error = new Error('hello world')
+    error.someThing = { status: 'hey' }
 
     assert
       .deepEqual(
@@ -113,4 +113,3 @@ test('should work with an Error object',
     assert.end()
   }
 )
-
