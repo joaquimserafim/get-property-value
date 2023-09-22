@@ -1,47 +1,47 @@
 {
-    "name": "get-property-value",
-    "version": "3.0.1",
-    "description": "get the property value from a nested object by using the dot path `a.b.c`",
-    "main": "index.js",
-    "types": "index.d.ts",
-    "files": ["LICENSE", "README.md", "index.js", "index.d.ts"],
-    "scripts": {
-        "coverage": "open coverage/lcov-report/index.html",
-        "coverage:check": "istanbul check-coverage --statements 100 --functions 100 --lines 100 --branches 100",
-        "test": "standard --fix && istanbul cover -x test.js tape test.js"
-    },
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/joaquimserafim/get-property-value.git"
-    },
-    "keywords": [
-        "utilities",
-        "js object",
-        "property",
-        "pick",
-        "get",
-        "path",
-        "object"
-    ],
-    "author": "@joaquimserafim",
-    "license": "ISC",
-    "bugs": {
-        "url": "https://github.com/joaquimserafim/get-property-value/issues"
-    },
-    "homepage": "https://github.com/joaquimserafim/get-property-value",
-    "devDependencies": {
-        "istanbul": "0.4.5",
-        "pre-commit": "^1.2.2",
-        "standard": "^17.0.0",
-        "tape": "^5.6.3",
-        "typescript": "^4.9.5"
-    },
-    "pre-commit": ["test", "coverage:check"],
-    "dependencies": {
-        "array.some": "^1.0.0",
-        "is.object": "^1.0.0"
-    },
-    "engines": {
-        "node": ">=14"
-    }
+	"name": "get-property-value",
+	"version": "4.0.0",
+	"description": "get the property value from a nested object by using the dot path `a.b.c`",
+	"main": "index.js",
+	"types": "index.d.ts",
+	"files": ["LICENSE", "README.md", "index.js", "index.d.ts"],
+	"scripts": {
+		"coverage": "open coverage/lcov-report/index.html",
+		"coverage:check": "istanbul check-coverage --statements 100 --functions 100 --lines 100 --branches 100",
+		"test": "standard --fix && istanbul cover -x test.js tape test.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/joaquimserafim/get-property-value.git"
+	},
+	"keywords": [
+		"utilities",
+		"js object",
+		"property",
+		"pick",
+		"get",
+		"path",
+		"object"
+	],
+	"author": "@joaquimserafim",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/joaquimserafim/get-property-value/issues"
+	},
+	"homepage": "https://github.com/joaquimserafim/get-property-value",
+	"devDependencies": {
+		"istanbul": "0.4.5",
+		"pre-commit": "^1.2.2",
+		"standard": "^17.0.0",
+		"tape": "^5.6.3",
+		"typescript": "^4.9.5"
+	},
+	"pre-commit": ["test", "coverage:check"],
+	"dependencies": {
+		"array.some": "^1.0.0",
+		"is.object": "^1.0.0"
+	},
+	"engines": {
+		"node": ">=18"
+	}
 }
