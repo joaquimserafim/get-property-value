@@ -1,10 +1,15 @@
 {
 	"name": "get-property-value",
-	"version": "4.0.0",
+	"version": "4.0.3",
 	"description": "get the property value from a nested object by using the dot path `a.b.c`",
 	"main": "index.js",
 	"types": "index.d.ts",
+	"type": "module",
 	"files": ["LICENSE", "README.md", "index.js", "index.d.ts"],
+	"exports": {
+		"types": "./index.d.ts",
+		"default": "./index.js"
+	},
 	"scripts": {
 		"coverage": "open coverage/lcov-report/index.html",
 		"coverage:check": "istanbul check-coverage --statements 100 --functions 100 --lines 100 --branches 100",

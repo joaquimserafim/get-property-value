@@ -1,6 +1,4 @@
-export declare function getPropertyValue<T = unknown, R = unknown>(
-	obj: T,
+export default function getPropertyValue<T0 = unknown, T1 = unknown>(
+	obj: T1,
 	path: string
-): R | string | number | boolean;
-
-export default getPropertyValue;
+): T0;
